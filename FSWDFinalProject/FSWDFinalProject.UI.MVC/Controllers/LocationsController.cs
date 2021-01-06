@@ -94,44 +94,44 @@ namespace FSWDFinalProject.UI.MVC.Controllers
             return View(location);
         }
 
-        // GET: Locations/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Location location = db.Locations.Find(id);
-        //    if (location == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(location);
-        //}
+        //GET: Locations/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Location location = db.Locations.Find(id);
+            if (location == null)
+            {
+                return HttpNotFound();
+            }
+            return View(location);
+        }
 
-        // POST: Locations/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Location location = db.Locations.Find(id);
-        //    db.Locations.Remove(location);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
-
-        //TODO: Scaffold Delete View
-        //replaced with AJAX functionality
-        [AcceptVerbs(HttpVerbs.Post)]
-        public JsonResult AjaxDelete(int id)
+        //POST: Locations/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
             Location location = db.Locations.Find(id);
             db.Locations.Remove(location);
             db.SaveChanges();
-
-            string confirmMessage = string.Format("Deleted store number '{0}' from the database!", location.StoreNumber);
-            return Json(new { id = id, message = confirmMessage });
+            return RedirectToAction("Index");
         }
+
+        ////TODO: Scaffold Delete View
+        ////replaced with AJAX functionality
+        //[AcceptVerbs(HttpVerbs.Post)]
+        //public JsonResult AjaxDelete(int id)
+        //{
+        //    Location location = db.Locations.Find(id);
+        //    db.Locations.Remove(location);
+        //    db.SaveChanges();
+
+        //    string confirmMessage = string.Format("Deleted store number '{0}' from the database!", location.StoreNumber);
+        //    return Json(new { id = id, message = confirmMessage });
+        //}
 
         protected override void Dispose(bool disposing)
         {
