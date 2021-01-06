@@ -64,6 +64,20 @@ namespace FSWDFinalProject.UI.MVC.Models
 
     public class RegisterViewModel
     {
+        [Display(Name = "First Name")]
+        [Required(ErrorMessage = "* First name required")]
+        [StringLength(50, ErrorMessage = "* First name must be less than 50 characters")]
+        public string FirstName { get; set; }
+
+        [Display(Name = "Last Name")]
+        [Required(ErrorMessage = "* Lsat name required")]
+        [StringLength(50, ErrorMessage = "* Last name must be less than 50 characters")]
+        public string LastName { get; set; }
+
+        [Display(Name = "Resume File")]
+        [DisplayFormat(NullDisplayText = "[-N/A-]")]
+        public string ResumeFilename { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

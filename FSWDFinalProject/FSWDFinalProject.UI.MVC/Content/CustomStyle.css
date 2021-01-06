@@ -1,0 +1,9 @@
+﻿#mainContent {
+    margin: auto; /*place this in curly braces ABOVE the other margin*/
+    margin-top: 10em;
+    width: 80%;
+}
+
+h2 {
+    margin-bottom: 25px;
+}

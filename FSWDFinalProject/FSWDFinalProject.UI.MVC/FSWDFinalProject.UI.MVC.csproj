@@ -169,6 +169,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
@@ -193,6 +194,7 @@
     <Content Include="Content\css\jquery-ui.min.css" />
     <Content Include="Content\css\matrialize.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\CustomStyle.css" />
     <Content Include="Content\favicon_io\android-chrome-192x192.png" />
     <Content Include="Content\favicon_io\android-chrome-512x512.png" />
     <Content Include="Content\favicon_io\apple-touch-icon.png" />
@@ -509,6 +511,11 @@
     <Content Include="_Archive\fonts\ProximaNovaT-Thin.woff" />
     <Content Include="_Archive\fonts\ProximaNovaT-Thin.woff2" />
     <Content Include="Views\Shared\_OriginalLayout.cshtml" />
+    <Content Include="Views\Locations\Create.cshtml" />
+    <Content Include="Views\Locations\Delete.cshtml" />
+    <Content Include="Views\Locations\Details.cshtml" />
+    <Content Include="Views\Locations\Edit.cshtml" />
+    <Content Include="Views\Locations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

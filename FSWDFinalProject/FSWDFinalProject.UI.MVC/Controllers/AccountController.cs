@@ -1,4 +1,5 @@
-﻿using FSWDFinalProject.UI.MVC.Models;
+﻿using FSWDFinalProject.DATA.EF;
+using FSWDFinalProject.UI.MVC.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -16,7 +17,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -153,11 +154,25 @@ namespace FSWDFinalProject.UI.MVC.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                    ViewBag.Link = callbackUrl;
-                    return View("DisplayEmail");
+                    UserDetail userDeets = new UserDetail();
+                    userDeets.UserId = user.Id;
+                    userDeets.FirstName = model.FirstName;
+                    userDeets.LastName = model.LastName;
+                    userDeets.ResumeFilename = model.ResumeFilename;
+
+                    JobBoardDbEntities db = new JobBoardDbEntities();
+                    db.UserDetails.Add(userDeets);
+                    db.SaveChanges();
+
+                    UserManager.AddToRole(user.Id, "Employee");
+                    #region Email Verification
+                    //var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                    //ViewBag.Link = callbackUrl;
+                    //return View("DisplayEmail");
+                    #endregion
+                    return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }

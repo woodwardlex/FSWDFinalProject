@@ -14,9 +14,9 @@
     <script src="~/Content/js/4n2NXumNjtg5LPp6VXLlDicTUfA.js"></script>
     <link rel="apple-touch-icon" href="~/Content/favicon_io/apple-touch-icon.png">
     <link rel="shortcut icon" type="image/ico" href="~/Content/favicon_io/favicon.ico" />
-
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css%22%3E" />
     <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
-    
+
     <link href="~/Content/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <link href="~/Content/css/matrialize.css" rel="stylesheet">
@@ -24,6 +24,7 @@
     <link href="~/Content/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="~/Content/css/style.css">
+    <link href="~/Content/CustomStyle.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -69,16 +70,24 @@
                             <nav class="main_nav_contaner ml-auto">
                                 <ul class="main_nav">
                                     <li class="active ">
-                                        @Html.ActionLink("Home","Index","Home")
+                                        @Html.ActionLink("Home", "Index", "Home")
                                     </li>
-                                    <li>@Html.ActionLink("About", "About","Home")</li>
-                                    <li>@Html.ActionLink("Contact","Contact","")</li>
+                                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                                    {
+                                        <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
+                                        <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
+                                        <li>@Html.ActionLink("Locations", "Index", "Locations")</li>
+                                    }
+                                    @Html.Partial("_LoginPartial")
                                 </ul>
-                                <div class=" Post-Jobs">
-                                    <a href="post_job.html" class="">
-                                        Post Jobs
-                                    </a>
-                                </div>
+
+                                @*<div class=" Post-Jobs">
+                                        <a href="post_job.html" class="">
+                                            Post Jobs
+                                        </a>
+                                    </div>*@
                                 <div class="hamburger menu_mm menu-vertical">
                                     <i class="large material-icons font-color-white menu_mm menu-vertical">menu</i>
                                 </div>
@@ -107,7 +116,7 @@
             <nav class="menu_nav">
                 <ul class="menu_mm">
                     <li class="menu_mm">
-                            @Html.ActionLink("Home", "Index", "Home")
+                        @Html.ActionLink("Home", "Index", "Home")
                     </li>
                     <li class="dropdown menu_mm">
                         <a class="dropdown-toggle menu_mm" data-toggle="dropdown" href="#">
@@ -120,15 +129,16 @@
                         </ul>
                     </li>
                     <li class="menu_mm"><a href="blog_page.html">Blog</a></li>
-                    <li class="menu_mm">@Html.ActionLink("About","About","Home")</li>
-                    <li class="menu_mm">@Html.ActionLink("Contact","Contact","Home")</li>
+                    <li class="menu_mm">@Html.ActionLink("About", "About", "Home")</li>
+                    <li class="menu_mm">@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @Html.Partial("_LoginPartial")
                 </ul>
             </nav>
         </div>
     </header>
-    
-    @RenderBody()
-    
+    <div id="mainContent">
+        @RenderBody()
+    </div>
     <footer id="footer" class="background-color-white">
         <div class="container">
             <div class="vertical-space-100"></div>
@@ -212,14 +222,18 @@
     <script src="~/Content/js/bootstrap.min.js"></script>
     <script src="~/Content/owlcarousel/owl.carousel.min.js"></script>
     <script src="~/Content/js/jquery-ui.min.js"></script>
-
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js%22%3E"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.ajax.unobtrusive/3.2.4/jquery.unobtrusive-ajax.min.js%22%3E"></script>
     <script src="~/Content/js/custom.js"></script>
     <script>
-        $(".search-icone").click(function(){
-     // $(".menu").animate({height: "100vh"});
-});
+        $(".search-icone").click(function () {
+            // $(".menu").animate({height: "100vh"});
+        });
 
     </script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 
 </html>
