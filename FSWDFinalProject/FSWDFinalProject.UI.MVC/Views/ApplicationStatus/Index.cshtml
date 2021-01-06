@@ -1,0 +1,51 @@
+﻿@model IEnumerable<FSWDFinalProject.DATA.EF.ApplicationStatus>
+
+@{
+    ViewBag.Title = "ApplicationStatus";
+}
+
+
+
+<section id="resent-job-post" class="background-color-white">
+    <div class="vertical-space-85"></div>
+    <div class="container text-center">
+        <h3 class="text-center">@ViewBag.Title</h3>
+        <p>
+            @Html.ActionLink("Add a Status", "Create")
+        </p>
+        <div class="vertical-space-30"></div>
+        <div class="vertical-space-60"></div>
+        <div class="detail">
+            <div class="media display-inline text-align-center">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StatusName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StatusDescription)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StatusName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StatusDescription)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationStatusId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationStatusId })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
