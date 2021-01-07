@@ -1,4 +1,4 @@
-﻿@model FSWDFinalProject.DATA.EF.Location
+﻿@model FSWDFinalProject.DATA.EF.Position
 
 @{
     ViewBag.Title = "Delete";
@@ -12,17 +12,17 @@
         <div class="vertical-space-60"></div>
         <div class="detail">
             <div class="media display-inline text-align-center">
-                <h3>Are you sure you want to delete location <span class="font-color-orange">@Model.StoreNumber</span>?</h3>
-                <div>
+                <h3>Are you sure you want to delete position <span class="font-color-orange">@Model.Title</span>?</h3>
 
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
 
-                        <input type="submit" value="Delete" class="btn btn-default" /> @:|
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-default" /> |
                         @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
-                    }
-                </div>
+                    </div>
+                }
             </div>
         </div>
     </div>

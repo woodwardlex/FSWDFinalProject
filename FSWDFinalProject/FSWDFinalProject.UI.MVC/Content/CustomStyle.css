@@ -1,9 +1,19 @@
-﻿#mainContent {
-    margin: auto; /*place this in curly braces ABOVE the other margin*/
+﻿/*#mainContent {
+    margin: auto; @*place this in curly braces ABOVE the other margin*@
     margin-top: 10em;
     width: 80%;
-}
+} 
+    **Above was ued to contain the RenderBody content from each page that did not have the search bar on it. Currently fixing views that do not need search bar
+*/
 
 h2 {
     margin-bottom: 25px;
+}
+
+.detail {
+    width: 90% !important;
+    margin-left: 11em !important;
+}
+div#editCreateBtns {
+    padding-right: 4em;
 }

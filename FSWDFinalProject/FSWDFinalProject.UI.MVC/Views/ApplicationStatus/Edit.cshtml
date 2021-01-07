@@ -1,49 +1,48 @@
 ﻿@model FSWDFinalProject.DATA.EF.ApplicationStatus
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Status";
 }
+<section id="resent-job-post" class="background-color-white">
+    <div class="vertical-space-85"></div>
+    <div class="container text-center">
+        <h3 class="text-center">@ViewBag.Title</h3>
+        <div class="vertical-space-30"></div>
+        <div class="vertical-space-60"></div>
+        <div class="detail">
+            @*<div class="media display-inline text-align-center">*@
 
-<h2>Edit</h2>
+                @using (Html.BeginForm("Edit", "Positions", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.ApplicationStatusId)
 
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.StatusName, new { htmlAttributes = new { @class = "form-control", placeholder = "Status Name" } })
+                            @Html.ValidationMessageFor(model => model.StatusName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>ApplicationStatus</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ApplicationStatusId)
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.StatusDescription, new { htmlAttributes = new { @class = "form-control", placeholder = "Description" } })
+                            @Html.ValidationMessageFor(model => model.StatusDescription, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.StatusName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StatusName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.StatusName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.StatusDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StatusDescription, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.StatusDescription, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+                    <div class="form-group" id="editCreateBtns">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                            @Html.ActionLink("Cancel", "Index", null, new { @class="btn btn-default"})
+                        </div>
+                    </div>
+                }
+            @*</div>*@
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+</section>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -1,7 +1,7 @@
-﻿@model FSWDFinalProject.DATA.EF.Location
+﻿@model FSWDFinalProject.DATA.EF.Position
 
 @{
-    ViewBag.Title = Model.StoreNumber;
+    ViewBag.Title = Model.Title;
 }
 
 <section id="resent-job-post" class="background-color-white">
@@ -14,33 +14,25 @@
             <div class="media display-inline text-align-center">
                 <dl class="dl-horizontal">
                     <dt>
-                        @Html.DisplayNameFor(model => model.City)
+                        @Html.DisplayNameFor(model => model.Title)
                     </dt>
 
                     <dd>
-                        @Html.DisplayFor(model => model.City)
+                        @Html.DisplayFor(model => model.Title)
                     </dd>
 
                     <dt>
-                        @Html.DisplayNameFor(model => model.State)
+                        @Html.DisplayNameFor(model => model.JobDescription)
                     </dt>
 
                     <dd>
-                        @Html.DisplayFor(model => model.State)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.UserDetail.FullName)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.UserDetail.FullName)
+                        @Html.DisplayFor(model => model.JobDescription)
                     </dd>
 
                 </dl>
             </div>
             <p>
-                @Html.ActionLink("Edit", "Edit", new { id = Model.LocationId }) |
+                @Html.ActionLink("Edit", "Edit", new { id = Model.PositionId }) |
                 @Html.ActionLink("Back to List", "Index")
             </p>
         </div>

@@ -1,0 +1,58 @@
+﻿@model FSWDFinalProject.UI.MVC.Models.ContactViewModel
+
+@{
+    ViewBag.Title = "Email Confirmation";
+}
+
+<section id="intro">
+    <div class="carousel-item active">
+        <div class="carousel-background"><img src="~/Content/imags/slider/slider1.jpg" alt=""></div>
+        <div class="carousel-container">
+            <div class="carousel-content text-left">
+                <div class="container">
+                    <h2 class="font-color-white">@ViewBag.Title</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to Home", "Index","Home")
+</p>

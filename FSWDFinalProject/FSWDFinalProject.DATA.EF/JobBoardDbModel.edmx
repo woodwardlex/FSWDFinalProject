@@ -50,6 +50,7 @@
           <Property Name="PositionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="JobDescription" Type="varchar" MaxLength="8000" />
+          <Property Name="PositionImage" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="UserDetails">
           <Key>
@@ -223,6 +224,7 @@
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="JobDescription" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="OpenPositions" Relationship="Self.FK_OpenPositions_Positions" FromRole="Positions" ToRole="OpenPositions" />
+          <Property Name="PositionImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="UserDetail">
           <Key>
@@ -390,6 +392,7 @@
           <EntitySetMapping Name="Positions">
             <EntityTypeMapping TypeName="JobBoardDbModel.Position">
               <MappingFragment StoreEntitySet="Positions">
+                <ScalarProperty Name="PositionImage" ColumnName="PositionImage" />
                 <ScalarProperty Name="PositionId" ColumnName="PositionId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />

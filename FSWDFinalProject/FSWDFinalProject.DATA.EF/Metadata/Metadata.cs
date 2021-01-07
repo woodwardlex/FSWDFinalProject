@@ -135,6 +135,9 @@ namespace FSWDFinalProject.DATA.EF//.Metadata
         [Display(Name ="Description")]
         [DisplayFormat(NullDisplayText ="[-N/A-]")]
         public string JobDescription { get; set; }
+
+        [Display(Name = "Image")]
+        public string PositionImage { get; set; }
     }
 
     [MetadataType(typeof(PositionsMetadata))]

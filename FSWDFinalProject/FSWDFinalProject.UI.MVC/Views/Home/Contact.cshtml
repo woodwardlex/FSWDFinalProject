@@ -1,20 +1,71 @@
-﻿@{
-    ViewBag.Title = "Contact";
-}
-<hgroup>
-    <h2>@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
-</hgroup>
-<div>
-    <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
-        <abbr title="Phone">P:</abbr>
-        425.555.0100
-    </address>
+﻿@model FSWDFinalProject.UI.MVC.Models.ContactViewModel
 
-    <address>
-        <i class="icon-envelope"></i><strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-        <i class="icon-envelope"></i><strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-    </address>
-</div>
+@{
+    ViewBag.Title = "Get in Touch";
+}
+
+<section id="Contact_us">
+    <div id="map" style="width: 100%;
+         height: 25vh"></div>
+</section>
+
+<section id="Get-in-Touch">
+    <div class="container text-center position-absolute">
+        <div class="Get-in-Touch-box">
+            <h3 class="text-left">@ViewBag.Title</h3>
+            <div class="vertical-space-5"></div>
+            <p class="text-left">Lorem ipsum tempus amet conubia adipiscing fermentum viverra gravida sodales luctus nulla</p>
+            <div class="vertical-space-40"></div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class=" col-lg-6 col-md-12">
+                        <div class="form-group">
+                            @*<input type="text" class="form-control" placeholder="Full name" required />*@
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Name" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            <span class="fa fa-user icone "></span>
+                        </div>
+                    </div>
+                    <div class=" col-lg-6 col-md-12">
+                        <div class="form-group">
+                            @*<input type="text" class="form-control" placeholder="Subject" required />*@
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            <span class="fa fa-file icone "></span>
+                        </div>
+                    </div>
+                    <div class=" col-lg-6 col-md-12">
+                        <div class="form-group">
+                            @*<input type="email" class="form-control" placeholder="Email address" required />*@
+                            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", placeholder = "Subject" } })
+                            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                            <span class="fa fa-envelope icone "></span>
+                        </div>
+                    </div>
+                    <div class=" col-lg-12 col-md-12">
+                        <div class="form-group">
+                            @*<textarea class="form-control" placeholder="Messege" rows="3" required></textarea>*@
+                            @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control", placeholder = "Message" } })
+                            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Send Message" class="btn btn-default" />
+                        @Html.ActionLink("Cancel", "Index")
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

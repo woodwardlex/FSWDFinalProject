@@ -172,6 +172,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PositionsController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
@@ -179,6 +180,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
+    <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -236,11 +238,6 @@
     <Content Include="Content\imags\icone\service-icone-7.png" />
     <Content Include="Content\imags\icone\service-icone-8.png" />
     <Content Include="Content\imags\job-detail.jpg" />
-    <Content Include="Content\imags\job-post-icone-1.png" />
-    <Content Include="Content\imags\job-post-icone-2.png" />
-    <Content Include="Content\imags\job-post-icone-3.png" />
-    <Content Include="Content\imags\job-post-icone-4.png" />
-    <Content Include="Content\imags\job-post-icone-5.png" />
     <Content Include="Content\imags\job-post.png" />
     <Content Include="Content\imags\jobs.jpg" />
     <Content Include="Content\imags\jobs2.jpg" />
@@ -431,7 +428,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -522,9 +518,17 @@
     <Content Include="Views\ApplicationStatus\Details.cshtml" />
     <Content Include="Views\ApplicationStatus\Edit.cshtml" />
     <Content Include="Views\ApplicationStatus\Index.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\EmailConfirmation.cshtml" />
+    <Content Include="Views\Positions\Create.cshtml" />
+    <Content Include="Views\Positions\Delete.cshtml" />
+    <Content Include="Views\Positions\Details.cshtml" />
+    <Content Include="Views\Positions\Edit.cshtml" />
+    <Content Include="Views\Positions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\Positions\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

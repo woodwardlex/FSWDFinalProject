@@ -51,13 +51,7 @@
                             </td>
                             <td>
                                 @Html.ActionLink("Edit", "Edit", new { id = item.LocationId }) |
-                                @Ajax.ActionLink("Delete", "AjaxDelete", "Locations", new { id = item.LocationId},
-                                                        new AjaxOptions {
-                                                            HttpMethod = "POST",
-                                                            Confirm = $"Are you sure you want to delete {item.StoreNumber} from the authors table?",
-                                                            OnSuccess = "deleteConfirmed",
-                                                            OnFailure = "deleteFailed"
-                                                        })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.LocationId})
                             </td>
                         </tr>
                     }

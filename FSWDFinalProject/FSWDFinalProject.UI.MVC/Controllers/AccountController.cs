@@ -154,6 +154,8 @@ namespace FSWDFinalProject.UI.MVC.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    UserManager.AddToRole(user.Id, "Employee");
+
                     UserDetail userDeets = new UserDetail();
                     userDeets.UserId = user.Id;
                     userDeets.FirstName = model.FirstName;
@@ -164,7 +166,6 @@ namespace FSWDFinalProject.UI.MVC.Controllers
                     db.UserDetails.Add(userDeets);
                     db.SaveChanges();
 
-                    UserManager.AddToRole(user.Id, "Employee");
                     #region Email Verification
                     //var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);

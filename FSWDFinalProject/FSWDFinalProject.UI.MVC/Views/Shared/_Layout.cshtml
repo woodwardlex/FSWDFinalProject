@@ -14,7 +14,7 @@
     <script src="~/Content/js/4n2NXumNjtg5LPp6VXLlDicTUfA.js"></script>
     <link rel="apple-touch-icon" href="~/Content/favicon_io/apple-touch-icon.png">
     <link rel="shortcut icon" type="image/ico" href="~/Content/favicon_io/favicon.ico" />
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css%22%3E" />
+    @*<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css%22%3E" />*@
     <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
 
     <link href="~/Content/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -43,7 +43,7 @@
                                     </li>
                                     <li>
                                         <i class="fa fa-envelope coll" aria-hidden="true"></i>
-                                        <div class="email"><a href="https://demo.technosarjan.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c3a6bba2aeb3afa683a9aca1b7a6ada7eda0acae">[email&#160;protected]</a></div>
+                                        <div class="email"><a href="@Url.Action("Contact","Home")" class="__cf_email__" data-cfemail="c3a6bba2aeb3afa683a9aca1b7a6ada7eda0acae">admin@jobson.com</a></div>
                                     </li>
                                 </ul>
                                 <div class=" ml-auto ">
@@ -76,22 +76,31 @@
                                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                                     {
+                                        <li>@Html.ActionLink("Locations", "Index", "Locations")</li>
                                         <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
                                         <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
-                                        <li>@Html.ActionLink("Locations", "Index", "Locations")</li>
+
                                     }
+                                    <!--TODO create functionality where the manager can only look at their locations-->
                                     @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
                                     {
-                                        <li>@Html.ActionLink("Application Statuses", "Index","ApplicatonStatus")</li>
+                                        <li>@Html.ActionLink("Application Statuses", "Index", "ApplicationStatus")</li>
+                                        <li>@Html.ActionLink("Positions", "Index", "Positions")</li>
+                                        @*<div class=" Post-Jobs">
+                                                <a href="post_job.html" class="">
+                                                    Post Jobs
+                                                </a>
+                                            </div>*@
                                     }
-                                    @Html.Partial("_LoginPartial")
+                                    <li class="dropdown menu_mm">
+                                        <a class="dropdown-toggle menu_mm" data-toggle="dropdown" href="#">
+                                            Sign In
+                                            <span class="caret"></span>
+                                        </a>
+                                        @Html.Partial("_LoginPartial")
+                                    </li>
                                 </ul>
 
-                                @*<div class=" Post-Jobs">
-                                        <a href="post_job.html" class="">
-                                            Post Jobs
-                                        </a>
-                                    </div>*@
                                 <div class="hamburger menu_mm menu-vertical">
                                     <i class="large material-icons font-color-white menu_mm menu-vertical">menu</i>
                                 </div>
@@ -122,16 +131,7 @@
                     <li class="menu_mm">
                         @Html.ActionLink("Home", "Index", "Home")
                     </li>
-                    <li class="dropdown menu_mm">
-                        <a class="dropdown-toggle menu_mm" data-toggle="dropdown" href="#">
-                            Job
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu menu_mm">
-                            <li class="menu_mm"><a href="job_category.html">Job List</a></li>
-                            <li class="menu_mm"><a href="job_detail.html">Job Detail</a></li>
-                        </ul>
-                    </li>
+                    <li class="menu_mm">@Html.ActionLink("Jobs", "Index", "OpenPositions")</li>
                     <li class="menu_mm"><a href="blog_page.html">Blog</a></li>
                     <li class="menu_mm">@Html.ActionLink("About", "About", "Home")</li>
                     <li class="menu_mm">@Html.ActionLink("Contact", "Contact", "Home")</li>
@@ -140,9 +140,39 @@
             </nav>
         </div>
     </header>
-    <div id="mainContent">
-        @RenderBody()
+    <section id="intro">
+        <div class="carousel-item active">
+            <div class="carousel-background"><img src="~/Content/imags/slider/slider1.jpg" alt=""></div>
+            <div class="carousel-container">
+                <div class="carousel-content">
+                    <h2 class="font-color-white">@ViewBag.Title</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div id="search-box">
+        <div class="container search-box">
+            <form action="#" id="search-box_search_form_3" class="search-box_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between ">
+                <div class="d-flex flex-row align-items-center justify-content-start inline-block">
+                    <span class="large material-icons search">search</span>
+                    <input class="search-box_search_input" placeholder="Search Keyword" required="required" type="search">
+                    <select class="dropdown_item_select search-box_search_input">
+                        <option>Category</option>
+                        <option>Category1</option>
+                        <option>Category2</option>
+                    </select>
+                    <span class="large material-icons search">place</span>
+                    <input class="search-box_search_input " placeholder="Location" required="required" type="search">
+                </div>
+                <button type="submit" class="search-box_search_button">Search Jobs</button>
+            </form>
+        </div>
     </div>
+
+    @RenderBody()
+
     <footer id="footer" class="background-color-white">
         <div class="container">
             <div class="vertical-space-100"></div>
@@ -226,8 +256,8 @@
     <script src="~/Content/js/bootstrap.min.js"></script>
     <script src="~/Content/owlcarousel/owl.carousel.min.js"></script>
     <script src="~/Content/js/jquery-ui.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js%22%3E"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.ajax.unobtrusive/3.2.4/jquery.unobtrusive-ajax.min.js%22%3E"></script>
+    @*<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js%22%3E"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.ajax.unobtrusive/3.2.4/jquery.unobtrusive-ajax.min.js%22%3E"></script>*@
     <script src="~/Content/js/custom.js"></script>
     <script>
         $(".search-icone").click(function () {
