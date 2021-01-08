@@ -22,24 +22,28 @@
                 <div class="media display-inline text-align-center">
                     @foreach (var item in Model)
                     {
-                        <img src="~/Content/images/Positions/@item.Position.PositionImage" alt="Position Icon" title="@item.Position.Title" class="mr-3" />
-                        <div class="media-body text-left  text-align-center">
-                            <h6><a href="@Url.Action("Details", "OpenPositions")" class="font-color-black">@item.Position.Title</a></h6>
-                            <i class="large material-icons">place</i>
-                            <span class="text">@Html.DisplayFor(modelItem => item.Location.Address)</span>
-                            @*<a href="#" class="part-full-time">Part Time</a>*@
-                        </div>
-                        <div class="media-body text-right text-align-center">
-                            @if (User.IsInRole("Employee"))
-                            {
-                                <a href="@Url.Action("Apply","OpenPositions")" class="btn background-color-orange font-color-white">Apply Here!</a>
-                            }
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <img src="~/Content/images/Positions/@item.Position.PositionImage" alt="Position Icon" title="@item.Position.Title" class="mr-3" />
+                                <div class="media-body text-left  text-align-center">
+                                    <h6><a href="@Url.Action("Details", "OpenPositions")" class="font-color-black">@item.Position.Title</a></h6>
+                                    <i class="large material-icons">place</i>
+                                    <span class="text">@Html.DisplayFor(modelItem => item.Location.Address)</span>
+                                    @*<a href="#" class="part-full-time">Part Time</a>*@
+                                </div>
+                                <div class="media-body text-right text-align-center">
+                                    @if (User.IsInRole("Employee"))
+                                    {
+                                        <a href="@Url.Action("Apply","OpenPositions")" class="btn background-color-orange font-color-white">Apply Here!</a>
+                                    }
 
-                            @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
-                            {
-                                <a href="@Url.Action("Edit","OpenPositions")" class="font-color-orange">Edit |</a>
-                                <a href="@Url.Action("Delete","OpenPositions")" class="font-color-orange">Delete</a>
-                            }
+                                    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                                    {
+                                        <a href="@Url.Action("Edit","OpenPositions")" class="font-color-orange">Edit |</a>
+                                        <a href="@Url.Action("Delete","OpenPositions")" class="font-color-orange">Delete</a>
+                                    }
+                                </div>
+                            </div>
                         </div>
                     }
 

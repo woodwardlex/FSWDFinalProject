@@ -32,24 +32,23 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.PositionImage)
-                            <img src="~/Content/imags/@item.PositionImage" alt="Position Icon" title="@item.Title" />
+                            @*@Html.DisplayFor(modelItem => item.PositionImage)*@
+                            <img src="~/Content/images/Positions/@item.PositionImage" alt="Position Icon" title="@item.Title" />
                         </td>
                         <td>
-                            @Html.ActionLink(item.Title, "Details", new { id = item.Title })
+                            @Html.ActionLink(item.Title, "Details", new { id = item.Title, @class = "btn background-color-orange font-color-white" })
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.JobDescription)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.PositionId }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.PositionId })
+                            @Html.ActionLink("Edit", "Edit", new { id = item.PositionId, @class = "font-color-orange" }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.PositionId, @class = "font-color-orange" })
                         </td>
                     </tr>
                 }
 
             </table>
         </div>
-    </div>
     </div>
 </section>

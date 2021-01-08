@@ -19,14 +19,14 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         private JobBoardDbEntities db = new JobBoardDbEntities();
 
         // GET: Positions
-        [Authorize(Roles = "Admin" + "Manager")]
+        [Authorize(Roles = "Admin,Manager")]
         public ActionResult Index()
         {
             return View(db.Positions.ToList());
         }
 
         // GET: Positions/Details/5
-        [Authorize(Roles = "Admin" + "Manager")]
+        [Authorize(Roles = "Admin,Manager")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -42,7 +42,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         }
 
         // GET: Positions/Create
-        [Authorize(Roles = "Admin" + "Manager")]
+        [Authorize(Roles = "Admin,Manager")]
         public ActionResult Create()
         {
             return View();
@@ -51,7 +51,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         // POST: Positions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin" + "Manager")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PositionId,Title,JobDescription")] Position position, HttpPostedFileBase positionIcon)
@@ -110,7 +110,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         }
 
         // GET: Positions/Edit/5
-        [Authorize(Roles = "Admin" + "Manager")]
+        [Authorize(Roles = "Admin,Manager")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -128,7 +128,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         // POST: Positions/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin" + "Manager")]
+        [Authorize(Roles = "Admin,Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PositionId,Title,JobDescription")] Position position, HttpPostedFileBase positionIcon)
@@ -177,7 +177,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         }
 
         // GET: Positions/Delete/5
-        [Authorize(Roles = "Admin" + "Manager")]
+        [Authorize(Roles = "Admin,Manager")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -193,7 +193,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         }
 
         // POST: Positions/Delete/5
-        [Authorize(Roles = "Admin" + "Manager")]
+        [Authorize(Roles = "Admin,Manager")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -4,25 +4,21 @@
     ViewBag.Title = "Delete";
 }
 
-<section id="intro">
-    <div class="carousel-item active">
-        <div class="carousel-background"><img src="~/Content/imags/slider/slider1.jpg" alt=""></div>
-        <div class="carousel-container">
-            <div class="carousel-content text-left">
-                <div class="container">
-                    <h2 class="font-color-white">@ViewBag.Title</h2>
-                </div>
-            </div>
+<section id="resent-job-post" class="background-color-white">
+    <div class="vertical-space-85"></div>
+    <div class="container text-center">
+
+        <h3 class="text-center">Are you sure you want to delete <span class="font-color-orange">@Model.StatusName</span>?</h3>
+        <div class="vertical-space-30"></div>
+
+        <div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <input type="submit" value="Delete" class="btn background-color-orange font-color-white" /> @:|
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn background-color-white font-color-orange" })
+            }
         </div>
     </div>
 </section>
-<h3>Are you sure you want to delete <span class="font-color-orange">@Model.StatusName</span>?</h3>
-<div>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
-    }
-</div>

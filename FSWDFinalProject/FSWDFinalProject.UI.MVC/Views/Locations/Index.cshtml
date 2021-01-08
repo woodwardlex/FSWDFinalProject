@@ -14,7 +14,6 @@
         </p>
         <div class="vertical-space-60"></div>
         <div class="detail">
-            <div class="media display-inline text-align-center">
                 <table class="table">
                     <tr>
                         <th>
@@ -36,7 +35,7 @@
                             <td>
                                 @*@Html.ActionLink("Details", "Details", new { id = item.LocationId })*@
                                 <!--Made Store Number a link to Details for that Location-->
-                                @Html.ActionLink(item.StoreNumber, "Details", new { id = item.StoreNumber })
+                                @Html.ActionLink(item.StoreNumber, "Details", new { id = item.StoreNumber, @class = "btn background-color-orange font-color-white" })
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Address)
@@ -52,7 +51,6 @@
                     }
 
                 </table>
-            </div>
         </div>
     </div>
 </section>

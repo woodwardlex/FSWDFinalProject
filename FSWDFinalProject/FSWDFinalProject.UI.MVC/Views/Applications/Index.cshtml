@@ -1,63 +1,74 @@
 ﻿@model IEnumerable<FSWDFinalProject.DATA.EF.Application>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Applications";
 }
 
-<h2>Index</h2>
+<section id="resent-job-post" class="background-color-white">
+    <div class="vertical-space-85"></div>
+    <div class="container text-center">
+        <h3 class="text-center">@ViewBag.Title</h3>
+        <div class="vertical-space-30"></div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ManagerNotes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ResumeFilename)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicationStatus.StatusName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OpenPosition.OpenPositionId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserDetail.FirstName)
-        </th>
-        <th></th>
-    </tr>
+        <div class="detail">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ApplicationDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OpenPosition.Position.Title)
+                    </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApplicationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ManagerNotes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ResumeFilename)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApplicationStatus.StatusName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OpenPosition.OpenPositionId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserDetail.FirstName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ApplicationId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ApplicationId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ApplicationId })
-        </td>
-    </tr>
-}
+                    <th>
+                        @Html.DisplayNameFor(model => model.OpenPosition.Location.Address)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ResumeFilename)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ApplicationStatus.StatusName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ManagerNotes)
+                    </th>
 
-</table>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ApplicationDate)
+                        </td>
+                        <td>
+                            @*@Html.ActionLink("Details", "Details", new { id = item.ApplicationId }) |*@
+
+                            @*@Html.DisplayFor(modelItem => item.OpenPosition.Position.Title)*@
+                            @Html.ActionLink(item.OpenPosition.Position.Title, "Details", new { id = item.OpenPosition.Position.Title, @class = "btn background-color-orange font-color-white" })
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OpenPosition.Location.Address)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ResumeFilename)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ApplicationStatus.StatusName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ManagerNotes)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationId })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</section>

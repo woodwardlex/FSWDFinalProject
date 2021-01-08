@@ -10,42 +10,40 @@
     <div class="vertical-space-85"></div>
     <div class="container text-center">
         <h3 class="text-center">@ViewBag.Title</h3>
-        <p>
-            @Html.ActionLink("Add a Status", "Create")
-        </p>
         <div class="vertical-space-30"></div>
+        <p class="btn background-color-orange font-color-white">
+            @Html.ActionLink("Add a Status", "Create", "ApplicationStatus")
+        </p>
         <div class="vertical-space-60"></div>
         <div class="detail">
-            <div class="media display-inline text-align-center">
-                <table class="table">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StatusName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StatusDescription)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
                     <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.StatusName)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.StatusDescription)
-                        </th>
-                        <th></th>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StatusName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StatusDescription)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationStatusId, @class = "btn font-color-orange" }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationStatusId, @class = "btn font-color-orange" })
+                        </td>
                     </tr>
+                }
 
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.StatusName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.StatusDescription)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationStatusId }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationStatusId })
-                            </td>
-                        </tr>
-                    }
-
-                </table>
-            </div>
+            </table>
         </div>
     </div>
 </section>

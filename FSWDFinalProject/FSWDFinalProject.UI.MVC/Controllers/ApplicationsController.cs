@@ -16,6 +16,8 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         private JobBoardDbEntities db = new JobBoardDbEntities();
 
         // GET: Applications
+
+        [Authorize(Roles = "Admin,Manager,Employee")]
         public ActionResult Index()
         {
             //current user
@@ -27,7 +29,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
             //admin
             if (User.IsInRole("Admin"))
             {
-                return View(applications);
+                return View(applications.ToList());
             }
 
             //manager
@@ -46,10 +48,14 @@ namespace FSWDFinalProject.UI.MVC.Controllers
                 return View(employeeApplications);
             }
 
-            return View(applications.ToList());
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         // GET: Applications/Details/5
+        [Authorize(Roles ="Admin,Manager,Employee")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -65,7 +71,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         }
 
         // GET: Applications/Create
-        [Authorize(Roles = "Admin" + "Manager")]
+        [Authorize(Roles = "Admin, Manager")]
         public ActionResult Create()
         {
             ViewBag.ApplicationStatusId = new SelectList(db.ApplicationStatuses, "ApplicationStatusId", "StatusName");
@@ -77,7 +83,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         // POST: Applications/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin" + "Manager")]
+        [Authorize(Roles = "Admin, Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ApplicationId,OpenPositionId,UserId,ApplicationDate,ManagerNotes,ApplicationStatusId,ResumeFilename")] Application application)
@@ -96,7 +102,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         }
 
         // GET: Applications/Edit/5
-        [Authorize(Roles = "Admin" + "Manager")]
+        [Authorize(Roles = "Admin, Manager")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -117,7 +123,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         // POST: Applications/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin" + "Manager")]
+        [Authorize(Roles = "Admin, Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ApplicationId,OpenPositionId,UserId,ApplicationDate,ManagerNotes,ApplicationStatusId,ResumeFilename")] Application application)
@@ -135,7 +141,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         }
 
         // GET: Applications/Delete/5
-        [Authorize(Roles = "Admin" + "Manager")]
+        [Authorize(Roles = "Admin, Manager")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -151,7 +157,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         }
 
         // POST: Applications/Delete/5
-        [Authorize(Roles = "Admin" + "Manager")]
+        [Authorize(Roles = "Admin, Manager")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

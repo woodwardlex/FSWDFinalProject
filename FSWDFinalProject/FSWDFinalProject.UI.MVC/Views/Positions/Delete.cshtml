@@ -7,23 +7,19 @@
 <section id="resent-job-post" class="background-color-white">
     <div class="vertical-space-85"></div>
     <div class="container text-center">
-        <h3 class="text-center">@ViewBag.Title</h3>
+        <h3 class="text-center">Are you sure you want to delete <span class="font-color-orange">@Model.Title</span>?</h3>
         <div class="vertical-space-30"></div>
-        <div class="vertical-space-60"></div>
-        <div class="detail">
-            <div class="media display-inline text-align-center">
-                <h3>Are you sure you want to delete position <span class="font-color-orange">@Model.Title</span>?</h3>
 
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
+        <div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-                    <div class="form-actions no-color">
-                        <input type="submit" value="Delete" class="btn btn-default" /> |
-                        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
-                    </div>
-                }
-            </div>
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn background-color-orange font-color-white" /> |
+                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn background-color-white font-color-orange" })
+                </div>
+            }
         </div>
     </div>
 </section>
