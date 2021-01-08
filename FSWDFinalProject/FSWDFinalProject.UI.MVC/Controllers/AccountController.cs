@@ -3,6 +3,7 @@ using FSWDFinalProject.UI.MVC.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -146,7 +147,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase resume)
         {
             if (ModelState.IsValid)
             {
@@ -154,13 +155,54 @@ namespace FSWDFinalProject.UI.MVC.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    UserManager.AddToRole(user.Id, "Employee");
+
 
                     UserDetail userDeets = new UserDetail();
                     userDeets.UserId = user.Id;
                     userDeets.FirstName = model.FirstName;
                     userDeets.LastName = model.LastName;
                     userDeets.ResumeFilename = model.ResumeFilename;
+
+                    if (resume != null)
+                    {
+                        //retrieve the image and assign to a variable
+                        string imgName = resume.FileName;
+
+                        //declare and assign the extension
+                        string ext = imgName.Substring(imgName.LastIndexOf('.'));
+
+                        //declare a good list of file extensions
+                        //string[] goodExts = {".pdf" };
+
+                        //check the ext variable ToLower() against our list of good exts and verify the content length
+                        //if good
+                        if (ext.ToLower() == ".pdf" && (resume.ContentLength <= 4194304))//4mb max by asp.net
+                        {
+                            //rename the file using a guid
+                            imgName = Guid.NewGuid() + ext.ToLower();
+
+                            #region Save UnResized value to the webserver
+                            //save the NEW file to the webserver
+                            resume.SaveAs(Server.MapPath("~/Content/images/Resumes/" + imgName));
+                            #endregion
+
+
+                            if (model.ResumeFilename != null)
+                            {
+                                string path = Server.MapPath("~/Content/imgstore/resumes/");
+                                System.IO.File.Delete(path + model.ResumeFilename);
+                            }
+
+                        }
+                        //save it to the object ONLY if all other conditions have been met
+                        userDeets.ResumeFilename = imgName;
+                    }
+                    else
+                    {
+                        return RedirectToAction("Register", model);
+                    }
+
+                    UserManager.AddToRole(user.Id, "Employee");
 
                     JobBoardDbEntities db = new JobBoardDbEntities();
                     db.UserDetails.Add(userDeets);

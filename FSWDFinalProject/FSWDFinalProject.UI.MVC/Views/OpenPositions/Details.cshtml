@@ -1,0 +1,38 @@
+﻿@model FSWDFinalProject.DATA.EF.OpenPosition
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<section id="resent-job-post" class="background-color-white">
+    <div class="vertical-space-85"></div>
+    <div class="container text-center">
+        <h3 class="text-center">@ViewBag.Title</h3>
+        <div class="vertical-space-30"></div>
+        <div class="vertical-space-60"></div>
+        <div class="detail">
+
+            <dl class="dl-horizontal">
+
+                <dd>
+                    @Html.DisplayFor(model => model.Position.Title)
+                </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Location.StoreNumber)
+                </dd>
+            </dl>
+        </div>
+        <div class="media-body text-right text-align-center">
+            @if (User.IsInRole("Employee"))
+            {
+                <a href="@Url.Action("Apply","OpenPositions")" class="btn background-color-orange font-color-white">Apply Here!</a>
+            }
+
+            @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+            {
+                <a href="@Url.Action("Edit","OpenPositions")" class="font-color-orange">Edit |</a>
+                <a href="@Url.Action("Delete","OpenPositions")" class="font-color-orange">Delete</a>
+            }
+        </div>
+    </div>
+</section>

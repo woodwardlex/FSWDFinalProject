@@ -8,10 +8,10 @@
     <div class="vertical-space-85"></div>
     <div class="container text-center">
         <h3 class="text-center">@ViewBag.Title</h3>
+        <div class="vertical-space-30"></div>
         <p>
             @Html.ActionLink("Add a Location", "Create")
         </p>
-        <div class="vertical-space-30"></div>
         <div class="vertical-space-60"></div>
         <div class="detail">
             <div class="media display-inline text-align-center">
@@ -21,11 +21,9 @@
                             @Html.DisplayNameFor(model => model.StoreNumber)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.City)
+                            @Html.DisplayNameFor(model => model.Address)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.State)
-                        </th>
+                        
                         <th>
                             @Html.DisplayNameFor(model => model.UserDetail.FullName)
                         </th>
@@ -41,17 +39,14 @@
                                 @Html.ActionLink(item.StoreNumber, "Details", new { id = item.StoreNumber })
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.City)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.State)
+                                @Html.DisplayFor(modelItem => item.Address)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.UserDetail.FullName)
                             </td>
                             <td>
                                 @Html.ActionLink("Edit", "Edit", new { id = item.LocationId }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.LocationId})
+                                @Html.ActionLink("Delete", "Delete", new { id = item.LocationId })
                             </td>
                         </tr>
                     }

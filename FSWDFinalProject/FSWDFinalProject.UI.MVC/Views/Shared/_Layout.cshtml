@@ -74,6 +74,7 @@
                                     </li>
                                     <li>@Html.ActionLink("About", "About", "Home")</li>
                                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                    <li>@Html.ActionLink("Jobs", "Index", "OpenPositions")</li>
                                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                                     {
                                         <li>@Html.ActionLink("Locations", "Index", "Locations")</li>
@@ -86,11 +87,7 @@
                                     {
                                         <li>@Html.ActionLink("Application Statuses", "Index", "ApplicationStatus")</li>
                                         <li>@Html.ActionLink("Positions", "Index", "Positions")</li>
-                                        @*<div class=" Post-Jobs">
-                                                <a href="post_job.html" class="">
-                                                    Post Jobs
-                                                </a>
-                                            </div>*@
+                                        <li class="Post-Jobs">@Html.ActionLink("Post Jobs!", "Create", "OpenPositions")</li>
                                     }
                                     <li class="dropdown menu_mm">
                                         <a class="dropdown-toggle menu_mm" data-toggle="dropdown" href="#">

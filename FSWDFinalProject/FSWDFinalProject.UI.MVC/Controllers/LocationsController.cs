@@ -15,6 +15,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         private JobBoardDbEntities db = new JobBoardDbEntities();
 
         // GET: Locations
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var locations = db.Locations.Include(l => l.UserDetail);
@@ -22,6 +23,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         }
 
         // GET: Locations/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         }
 
         // GET: Locations/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.ManagerId = new SelectList(db.UserDetails, "UserId", "FullName");
@@ -46,6 +49,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         // POST: Locations/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "LocationId,StoreNumber,City,State,ManagerId")] Location location)
@@ -62,6 +66,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         }
 
         // GET: Locations/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,6 +85,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         // POST: Locations/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "LocationId,StoreNumber,City,State,ManagerId")] Location location)
@@ -95,6 +101,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         }
 
         //GET: Locations/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -110,6 +117,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         }
 
         //POST: Locations/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -119,19 +127,6 @@ namespace FSWDFinalProject.UI.MVC.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-        ////TODO: Scaffold Delete View
-        ////replaced with AJAX functionality
-        //[AcceptVerbs(HttpVerbs.Post)]
-        //public JsonResult AjaxDelete(int id)
-        //{
-        //    Location location = db.Locations.Find(id);
-        //    db.Locations.Remove(location);
-        //    db.SaveChanges();
-
-        //    string confirmMessage = string.Format("Deleted store number '{0}' from the database!", location.StoreNumber);
-        //    return Json(new { id = id, message = confirmMessage });
-        //}
 
         protected override void Dispose(bool disposing)
         {

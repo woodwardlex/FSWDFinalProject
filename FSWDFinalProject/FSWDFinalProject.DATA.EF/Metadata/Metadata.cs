@@ -100,7 +100,14 @@ namespace FSWDFinalProject.DATA.EF//.Metadata
     }
 
     [MetadataType(typeof(LocationsMetadata))]
-    public partial class Location { }
+    public partial class Location
+    {
+        [Display(Name ="Address")]
+        public string Address
+        {
+            get { return City + ", " + State; }
+        }
+    }
     #endregion
 
     #region OpenPositions Metadata
