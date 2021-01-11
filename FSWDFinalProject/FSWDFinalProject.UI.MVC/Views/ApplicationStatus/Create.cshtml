@@ -33,8 +33,8 @@
 
                     <div class="form-group" id="editCreateBtns">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Add" class="btn btn-default" />
-                            <a href="@Url.Action("Index","Home")" class="btn btn-default">Home</a>
+                            <input type="submit" value="Add" class="btn background-color-orange font-color-white" />
+                            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn background-color-white font-color-orange" })
                         </div>
                     </div>
                 }

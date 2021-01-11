@@ -32,8 +32,10 @@
                     <th>
                         @Html.DisplayNameFor(model => model.ManagerNotes)
                     </th>
-
-                    <th></th>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                    {
+                        <th></th>
+                    }
                 </tr>
 
                 @foreach (var item in Model)
@@ -47,6 +49,7 @@
 
                             @*@Html.DisplayFor(modelItem => item.OpenPosition.Position.Title)*@
                             @Html.ActionLink(item.OpenPosition.Position.Title, "Details", new { id = item.OpenPosition.Position.Title, @class = "btn background-color-orange font-color-white" })
+
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.OpenPosition.Location.Address)
@@ -61,10 +64,14 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.ManagerNotes)
                         </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationId }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationId })
-                        </td>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                        {
+                            <td>
+                                <a href="@Url.Action("Edit","Applications", new { id=item.ApplicationId})" class="font-color-orange">Edit |</a>
+                                <a href="@Url.Action("Delete","Applications", new { id=item.ApplicationId})" class="font-color-orange">Delete</a>
+                            </td>
+                        }
+
                     </tr>
                 }
 

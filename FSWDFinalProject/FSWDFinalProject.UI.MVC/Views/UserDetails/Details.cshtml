@@ -5,36 +5,45 @@
 }
 
 
+<section id="resent-job-post" class="background-color-white">
+    <div class="vertical-space-85"></div>
+    <div class="container text-center">
+        <h3 class="text-center">@ViewBag.Title</h3>
+        <div class="vertical-space-30"></div>
+        <div class="vertical-space-60"></div>
+        <div class="detail">
 
 
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.FirstName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ResumeFilename)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ResumeFilename)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ResumeFilename)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.ResumeFilename)
+                </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            </dl>
+            <div class="media-body text-right text-align-center">
+                <a href="@Url.Action("Edit", "UserDetails")" class="font-color-orange">Edit |</a>
+                <a href="@Url.Action("Delete", "UserDetails")" class="font-color-orange">Delete</a>
+            </div>
+        </div>
+    </div>
+</section>

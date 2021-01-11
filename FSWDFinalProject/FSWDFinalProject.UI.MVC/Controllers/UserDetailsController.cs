@@ -16,10 +16,14 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         private JobBoardDbEntities db = new JobBoardDbEntities();
 
         // GET: UserDetails
-        //public ActionResult Index()
-        //{
-        //    return View(db.UserDetails.ToList());
-        //}
+        public ActionResult Index()
+        {
+            string currentUserID = User.Identity.GetUserId();
+
+            var profile = db.UserDetails.Where(p => p.UserId == currentUserID);
+
+            return View(profile);
+        }
 
         // GET: UserDetails/Details/5
         public ActionResult Details(string id)

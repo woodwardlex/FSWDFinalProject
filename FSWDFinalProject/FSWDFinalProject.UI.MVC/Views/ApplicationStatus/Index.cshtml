@@ -37,8 +37,8 @@
                             @Html.DisplayFor(modelItem => item.StatusDescription)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationStatusId, @class = "btn font-color-orange" }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationStatusId, @class = "btn font-color-orange" })
+                            <a href="@Url.Action("Edit","ApplicationStatus", new { id=item.ApplicationStatusId})" class="font-color-orange">Edit |</a>
+                            <a href="@Url.Action("Delete","ApplicationStatus", new { id=item.ApplicationStatusId})" class="font-color-orange">Delete</a>
                         </td>
                     </tr>
                 }

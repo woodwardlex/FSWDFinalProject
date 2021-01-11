@@ -10,7 +10,7 @@
         <h3 class="text-center">@ViewBag.Title</h3>
         <div class="vertical-space-30"></div>
         <p>
-            @Html.ActionLink("Add a Location", "Create")
+            <a href="@Url.Action("Create", "Locations")" class="font-color-orange">Add a Location</a>
         </p>
         <div class="vertical-space-60"></div>
         <div class="detail">
@@ -35,7 +35,7 @@
                             <td>
                                 @*@Html.ActionLink("Details", "Details", new { id = item.LocationId })*@
                                 <!--Made Store Number a link to Details for that Location-->
-                                @Html.ActionLink(item.StoreNumber, "Details", new { id = item.StoreNumber, @class = "btn background-color-orange font-color-white" })
+                                <a href="@Url.Action("Details", "Locations", new { id=item.LocationId})" class="font-color-black">@item.StoreNumber</a>
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Address)
@@ -44,8 +44,8 @@
                                 @Html.DisplayFor(modelItem => item.UserDetail.FullName)
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.LocationId }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.LocationId })
+                                <a href="@Url.Action("Edit","Locations", new { id=item.LocationId})" class="font-color-orange">Edit |</a>
+                                <a href="@Url.Action("Delete","Locations", new { id=item.LocationId})" class="font-color-orange">Delete</a>
                             </td>
                         </tr>
                     }

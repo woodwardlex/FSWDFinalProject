@@ -11,14 +11,14 @@
         <div class="vertical-space-30"></div>
 
         <p id="positionCreate">
-            @Html.ActionLink("Add a Position", "Create", "Positions")
+            <a href="@Url.Action("Create", "Positions")" class="font-color-orange">Add a Position</a>
         </p>
         <div class="vertical-space-60"></div>
 
         <div class="detail">
             <table class="table">
                 <tr>
-                    <th>@Html.DisplayNameFor(model => model.PositionImage)</th>
+                    <th></th>
                     <th>
                         @Html.DisplayNameFor(model => model.Title)
                     </th>
@@ -36,14 +36,14 @@
                             <img src="~/Content/images/Positions/@item.PositionImage" alt="Position Icon" title="@item.Title" />
                         </td>
                         <td>
-                            @Html.ActionLink(item.Title, "Details", new { id = item.Title, @class = "btn background-color-orange font-color-white" })
+                            <a href="@Url.Action("Details", "Positions", new { id=item.PositionId})" class="font-color-black">@item.Title</a>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.JobDescription)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.PositionId, @class = "font-color-orange" }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.PositionId, @class = "font-color-orange" })
+                            <a href="@Url.Action("Edit","Positions", new { id=item.PositionId})" class="font-color-orange">Edit |</a>
+                            <a href="@Url.Action("Delete","Positions", new { id=item.PositionId})" class="font-color-orange">Delete</a>
                         </td>
                     </tr>
                 }

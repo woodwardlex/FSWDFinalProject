@@ -1,7 +1,7 @@
 ﻿@model FSWDFinalProject.DATA.EF.OpenPosition
 
 @{
-    ViewBag.Title = "Add a Job";
+    ViewBag.Title = "Add an Open Position";
 }
 
 <section id="resent-job-post" class="background-color-white">
@@ -12,36 +12,36 @@
         <div class="vertical-space-60"></div>
         <div class="detail">
 
-            @using (Html.BeginForm("Create", "OpenPositions", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+            @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            @Html.DropDownList("PositionId", null, htmlAttributes: new { @class = "form-control", placeholder="Position" })
-                            @Html.ValidationMessageFor(model => model.PositionId, "", new { @class = "text-danger" })
-                        </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.DropDownList("PositionId", null, htmlAttributes: new { @class = "form-control", placeholder = "Position" })
+                        @Html.ValidationMessageFor(model => model.PositionId, "", new { @class = "text-danger" })
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            @Html.DropDownList("LocationId", null, htmlAttributes: new { @class = "form-control", placeholder="Location" })
-                            @Html.ValidationMessageFor(model => model.LocationId, "", new { @class = "text-danger" })
-                        </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.DropDownList("LocationId", null, htmlAttributes: new { @class = "form-control", placeholder = "Location" })
+                        @Html.ValidationMessageFor(model => model.LocationId, "", new { @class = "text-danger" })
                     </div>
+                </div>
 
-                    <div class="form-group" id="editCreateBtns">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Create" class="btn background-color-orange font-color-white" />
-                            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn background-color-white font-color-orange" })
-                        </div>
+                <div class="form-group" id="editCreateBtns">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Add Job" class="btn background-color-orange font-color-white" />
+                        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn background-color-white font-color-orange" })
                     </div>
+                </div>
             }
-            </div>
         </div>
-    </section>
+    </div>
+</section>
 
-            @section Scripts {
-                @Scripts.Render("~/bundles/jqueryval")
-            }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

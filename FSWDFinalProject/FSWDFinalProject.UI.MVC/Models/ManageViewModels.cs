@@ -2,6 +2,7 @@
 using Microsoft.Owin.Security;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using FSWDFinalProject.UI.MVC.Models;
 
 namespace FSWDFinalProject.UI.MVC.Models
 {

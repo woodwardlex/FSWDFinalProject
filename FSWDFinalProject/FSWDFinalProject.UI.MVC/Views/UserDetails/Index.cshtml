@@ -5,41 +5,26 @@
 }
 
 
-<h2>Index</h2>
+<section id="resent-job-post" class="background-color-white">
+    <div class="vertical-space-85"></div>
+    <div class="container text-center">
+        <h3 class="text-center">@ViewBag.Title</h3>
+        <div class="vertical-space-30"></div>
+        <div class="detail width-100 ">
+            @foreach (var item in Model)
+            {
+                <div class="section">
+                    <div class="media-body text-left  text-align-center">
+                        <a href="@Url.Action("Details", "UserDetails", new { id=item.UserId})" class="font-color-black">@item.FullName</a>
+                        <span class="text">@Html.DisplayFor(modelItem => item.ResumeFilename)</span>
+                        <a href="@Url.Action("Edit","UserDetails", new { id=item.UserId})" class="font-color-orange">Edit |</a>
+                        <a href="@Url.Action("Delete","OpenPositions", new { id=item.UserId})" class="font-color-orange">Delete</a>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ResumeFilename)
-        </th>
-        <th></th>
-    </tr>
+                    </div>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ResumeFilename)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.UserId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
-            </td>
-        </tr>
-    }
+                </div>
+            }
 
-</table>
-
+        </div>
+    </div>
+</section>

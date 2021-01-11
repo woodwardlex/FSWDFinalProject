@@ -17,3 +17,13 @@ h2 {
 div#editCreateBtns {
     padding-right: 4em;
 }
+
+/*Nav*/
+li.Post-Jobs {
+    margin-left: 0 !important;
+}
+
+/*OpenPositions - Index*/
+img.mr-3 {
+    padding-right: 40em;
+}

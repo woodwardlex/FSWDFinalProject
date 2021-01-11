@@ -518,7 +518,6 @@
     <Content Include="Views\Locations\Index.cshtml" />
     <Content Include="Views\ApplicationStatus\Create.cshtml" />
     <Content Include="Views\ApplicationStatus\Delete.cshtml" />
-    <Content Include="Views\ApplicationStatus\Details.cshtml" />
     <Content Include="Views\ApplicationStatus\Edit.cshtml" />
     <Content Include="Views\ApplicationStatus\Index.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />

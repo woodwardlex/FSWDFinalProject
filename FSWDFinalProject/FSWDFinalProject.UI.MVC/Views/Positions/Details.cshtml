@@ -1,4 +1,4 @@
-﻿@model FSWDFinalProject.DATA.EF.OpenPosition
+﻿@model FSWDFinalProject.DATA.EF.Position
 
 @{
     ViewBag.Title = "Details";
@@ -13,24 +13,24 @@
         <div class="detail">
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.Location.StoreNumber)
+                    @Html.DisplayNameFor(model => model.Title)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.Location.StoreNumber)
+                    @Html.DisplayFor(model => model.Title)
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.Position.Title)
+                    @Html.DisplayNameFor(model => model.JobDescription)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.Position.Title)
+                    @Html.DisplayFor(model => model.JobDescription)
                 </dd>
             </dl>
             <div class="media-body text-right text-align-center">
-                <a href="@Url.Action("Edit","OpenPositions")" class="font-color-orange">Edit |</a>
-                <a href="@Url.Action("Delete","OpenPositions")" class="font-color-orange">Delete</a>
+                <a href="@Url.Action("Edit","Positions")" class="font-color-orange">Edit |</a>
+                <a href="@Url.Action("Delete","Positions")" class="font-color-orange">Delete</a>
             </div>
         </div>
     </div>
