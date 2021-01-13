@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<FSWDFinalProject.DATA.EF.OpenPosition>
-
+@using Microsoft.AspNet.Identity;
 @{
     ViewBag.Title = "Open Positions";
 }
@@ -19,31 +19,51 @@
         <div class="vertical-space-60"></div>
         <div class="col-lg-10">
             <div class="detail width-100 ">
+                @{
+                    var ctx = new FSWDFinalProject.DATA.EF.JobBoardDbEntities();
+                    var applications = ctx.Applications;
+                    var currentUserID = User.Identity.GetUserId();
+                }
                 @foreach (var item in Model)
                 {
-                    <div class="section">
-                        <img src="~/Content/images/Positions/@item.Position.PositionImage" alt="Position Icon" title="@item.Position.Title" class="mr-3" />
+                <div class="section" style="padding-bottom:1em;margin-bottom:1em;border-bottom:1px solid orange">
+                    <div style="float:left; width:5%" class="text-center">
+                        <img src="~/Content/images/Positions/@item.Position.PositionImage" alt="Position Icon" title="@item.Position.Title" @*class="mr-3"*@ style="display:inline;" />
+                    </div>
+                    <div style="margin-left:6%;">
                         <div class="media-body text-center  text-align-center">
                             <h6><a href="@Url.Action("Details", "OpenPositions")" class="font-color-black">@item.Position.Title</a></h6>
                             <i class="large material-icons">place</i>
                             <span class="text">@Html.DisplayFor(modelItem => item.Location.Address)</span>
                             @*<a href="#" class="part-full-time">Part Time</a>*@
                         </div>
-                        <div class="media-body text-right text-align-center">
-                            @if (User.IsInRole("Employee"))
-                            {
-                                <a href="@Url.Action("Apply","OpenPositions", new { id=item.OpenPositionId})" class="btn background-color-orange font-color-white">Apply Here!</a>
-                            }
-
-                            @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
-                            {
-                                <a href="@Url.Action("Edit","OpenPositions", new { id=item.OpenPositionId})" class="font-color-orange">Edit |</a>
-                                <a href="@Url.Action("Delete","OpenPositions", new { id=item.OpenPositionId})" class="font-color-orange">Delete</a>
-                            }
-                        </div>
                     </div>
-                }
+                    @if (User.IsInRole("Employee"))
+                    {
+                        <div class="media-body text-align-center">
+                            @if (applications.Where(x => x.OpenPositionId == item.OpenPositionId && x.UserId == currentUserID).Count() == 0)
+                            {
+                                <a href="@Url.Action("Apply", "OpenPositions", new { id = item.OpenPositionId })" class="btn background-color-orange font-color-white">Apply Now!</a>
+                            }
+                            else
+                            {
+                                @*<a href="@Url.Action("Apply","OpenPositions", new { id=item.OpenPositionId})" class="btn background-color-orange font-color-white">Applied!</a>*@
+                                <i class="fa fa-check action-icons"></i>
+                            }
 
+                        </div>
+                    }
+
+                    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                    {
+                        <div class="media-body text-right text-align-center">
+                            <a href="@Url.Action("Edit", "OpenPositions", new { id = item.OpenPositionId })" class="font-color-orange">Edit |</a>
+                            <a href="@Url.Action("Delete", "OpenPositions", new { id = item.OpenPositionId })" class="font-color-orange">Delete</a>
+                        </div>
+                    }
+                    <div style="clear:both;"></div>
+                </div>
+                }
             </div>
         </div>
     </div>

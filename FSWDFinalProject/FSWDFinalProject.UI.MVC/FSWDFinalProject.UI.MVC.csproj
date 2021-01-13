@@ -215,6 +215,8 @@
     <Content Include="Content\fonts\Mark Simonson - Proxima Nova Semibold-webfont.svg" />
     <Content Include="Content\images\apple-touch-icon.html" />
     <Content Include="Content\images\favicon.html" />
+    <Content Include="Content\images\IntroPhotoFinalProject.png" />
+    <Content Include="Content\images\ProfilePicture.jpg" />
     <Content Include="Content\imags\Best-Place-to-Find-Jobs-icone1.png" />
     <Content Include="Content\imags\Best-Place-to-Find-Jobs-icone2.png" />
     <Content Include="Content\imags\Best-Place-to-Find-Jobs.html" />

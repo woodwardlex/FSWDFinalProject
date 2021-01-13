@@ -32,11 +32,9 @@
             </dl>
             <div class="media-body text-right text-align-center">
                 <a href="@Url.Action("Index", "Applications")" class="font-color-orange">Back </a>
-                @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
-                {
-                    <a href="@Url.Action("Edit","OpenPositions")" class="font-color-orange">| Edit |</a>
-                    <a href="@Url.Action("Delete","OpenPositions")" class="font-color-orange">Delete</a>
-                }
+                <a href="@Url.Action("Edit","OpenPositions")" class="font-color-orange">| Edit |</a>
+                <a href="@Url.Action("Delete","OpenPositions")" class="font-color-orange">Delete</a>
+
             </div>
         </div>
     </div>

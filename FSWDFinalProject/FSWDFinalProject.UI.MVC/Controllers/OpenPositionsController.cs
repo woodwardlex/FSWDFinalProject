@@ -70,7 +70,21 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         [Authorize(Roles = "Admin, Manager")]
         public ActionResult Create()
         {
-            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "StoreNumber");
+            //Get and Post
+            //get current logged on user
+            string currentUserId = User.Identity.GetUserId();
+
+            if (User.IsInRole("Manager"))
+            {
+                //create query for only locations for that user
+                //if the user is a manager use the locations by manager for the source of the dropdown
+                var managerLocations = db.Locations.Where(x => x.ManagerId == currentUserId);
+                ViewBag.LocationId = new SelectList(managerLocations, "LocationId", "StoreNumber");
+            }
+            else //Admins
+            {
+                ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "StoreNumber");
+            }
             ViewBag.PositionId = new SelectList(db.Positions, "PositionId", "Title");
             return View();
         }
@@ -89,9 +103,22 @@ namespace FSWDFinalProject.UI.MVC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            //get current logged on user
+            string currentUserId = User.Identity.GetUserId();
 
-            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "StoreNumber", openPosition.LocationId);
+            if (User.IsInRole("Manager"))
+            {
+                //create query for only locations for that user
+                //if the user is a manager use the locations by manager for the source of the dropdown
+                var managerLocations = db.Locations.Where(x => x.ManagerId == currentUserId);
+                ViewBag.LocationId = new SelectList(managerLocations, "LocationId", "StoreNumber", openPosition.LocationId);
+            }
+            else //Admins
+            {
+                ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "StoreNumber", openPosition.LocationId);
+            }
             ViewBag.PositionId = new SelectList(db.Positions, "PositionId", "Title", openPosition.PositionId);
+
             return View(openPosition);
         }
 
@@ -108,7 +135,20 @@ namespace FSWDFinalProject.UI.MVC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "StoreNumber", openPosition.LocationId);
+            //get current logged on user
+            string currentUserId = User.Identity.GetUserId();
+
+            if (User.IsInRole("Manager"))
+            {
+                //create query for only locations for that user
+                //if the user is a manager use the locations by manager for the source of the dropdown
+                var managerLocations = db.Locations.Where(x => x.ManagerId == currentUserId);
+                ViewBag.LocationId = new SelectList(managerLocations, "LocationId", "StoreNumber", openPosition.LocationId);
+            }
+            else //Admins
+            {
+                ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "StoreNumber", openPosition.LocationId);
+            }
             ViewBag.PositionId = new SelectList(db.Positions, "PositionId", "Title", openPosition.PositionId);
             return View(openPosition);
         }
@@ -127,7 +167,20 @@ namespace FSWDFinalProject.UI.MVC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "StoreNumber", openPosition.LocationId);
+            //get current logged on user
+            string currentUserId = User.Identity.GetUserId();
+
+            if (User.IsInRole("Manager"))
+            {
+                //create query for only locations for that user
+                //if the user is a manager use the locations by manager for the source of the dropdown
+                var managerLocations = db.Locations.Where(x => x.ManagerId == currentUserId);
+                ViewBag.LocationId = new SelectList(managerLocations, "LocationId", "StoreNumber", openPosition.LocationId);
+            }
+            else //Admins
+            {
+                ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "StoreNumber", openPosition.LocationId);
+            }
             ViewBag.PositionId = new SelectList(db.Positions, "PositionId", "Title", openPosition.PositionId);
             return View(openPosition);
         }

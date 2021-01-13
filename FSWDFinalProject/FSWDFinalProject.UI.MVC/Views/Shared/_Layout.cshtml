@@ -97,7 +97,7 @@
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manager<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
                                                 <li>@Html.ActionLink("Positions", "Index", "Positions")</li>
-                                                <li>@Html.ActionLink("Applications", "Index", "Positions")</li>
+                                                <li>@Html.ActionLink("Applications", "Index", "Applications")</li>
                                             </ul>
                                         </li>
                                     }
@@ -106,14 +106,14 @@
                                         <li class="Post-Jobs">@Html.ActionLink("Post Jobs!", "Create", "OpenPositions")</li>
                                     }
                                     <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">User Details<span class="caret"></span></a>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account<span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                             <li>
                                                 @Html.Partial("_LoginPartial")
                                             </li>
-                                            <li>
+                                            @*<li>
                                                 @Html.ActionLink("Profile", "Details", "UserDetails")
-                                            </li>
+                                            </li>*@
                                         </ul>
                                     </li>
                                 </ul>
@@ -159,7 +159,9 @@
     </header>
     <section id="intro">
         <div class="carousel-item active">
-            <div class="carousel-background"><img src="~/Content/imags/slider/slider1.jpg" alt=""></div>
+            <div class="carousel-background">
+                <img src="~/Content/images/IntroPhotoFinalProject.png" alt="" />
+            </div>
             <div class="carousel-container">
                 <div class="carousel-content">
                     <h2 class="font-color-white">@ViewBag.Title</h2>
@@ -244,7 +246,7 @@
         <div class="container-fluid background-color-orange main-footer">
             <div class="container text-center">
                 <div class="vertical-space-30"></div>
-                <p><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></p>
+                <p><a target="_blank" href="https://www.templateshub.net">Templates Hub</a>Edited by: Alexis G. Woodward</p>
             </div>
         </div>
     </footer>

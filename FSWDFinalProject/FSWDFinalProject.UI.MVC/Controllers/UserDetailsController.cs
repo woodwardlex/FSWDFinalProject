@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FSWDFinalProject.DATA.EF;
+using FSWDFinalProject.UI.MVC.Models;
 using Microsoft.AspNet.Identity;
 
 namespace FSWDFinalProject.UI.MVC.Controllers
@@ -66,19 +67,58 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         //}
 
         // GET: UserDetails/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(string id, HttpPostedFileBase resume, RegisterViewModel model)
         {
 
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserDetail userDetail = db.UserDetails.Find(id);
-            if (userDetail == null)
+            string currentUserId = User.Identity.GetUserId();
+
+            UserDetail userDeets = db.UserDetails.Find(id);
+            userDeets.UserId = currentUserId;
+            userDeets.FirstName = model.FirstName;
+            userDeets.LastName = model.LastName;
+            userDeets.ResumeFilename = model.ResumeFilename;
+
+            if (resume == null)
             {
+                //retrieve the image and assign to a variable
+                string imgName = resume.FileName;
+
+                //declare and assign the extension
+                string ext = imgName.Substring(imgName.LastIndexOf('.'));
+
+                //declare a good list of file extensions
+                //string[] goodExts = {".pdf" };
+
+                //check the ext variable ToLower() against our list of good exts and verify the content length
+                //if good
+                if (ext.ToLower() == ".pdf" && (resume.ContentLength <= 4194304))//4mb max by asp.net
+                {
+                    //rename the file using a guid
+                    imgName = Guid.NewGuid() + ext.ToLower();
+
+                    #region Save UnResized value to the webserver
+                    //save the NEW file to the webserver
+                    resume.SaveAs(Server.MapPath("~/Content/images/Resumes/" + imgName));
+                    #endregion
+
+
+                    if (model.ResumeFilename != null)
+                    {
+                        string path = Server.MapPath("~/Content/imgstore/resumes/");
+                        System.IO.File.Delete(path + model.ResumeFilename);
+                    }
+
+                }
+                //save it to the object ONLY if all other conditions have been met
+                userDeets.ResumeFilename = imgName;
                 return HttpNotFound();
             }
-            return View(userDetail);
+
+            return View(userDeets);
         }
 
         // POST: UserDetails/Edit/5
@@ -86,10 +126,46 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserId,FirstName,LastName,ResumeFilename")] UserDetail userDetail)
+        public ActionResult Edit([Bind(Include = "UserId,FirstName,LastName,ResumeFilename")] UserDetail userDetail, HttpPostedFileBase resume, RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
+
+
+                //retrieve the image and assign to a variable
+                string imgName = resume.FileName;
+
+                //declare and assign the extension
+                string ext = imgName.Substring(imgName.LastIndexOf('.'));
+
+                //declare a good list of file extensions
+                //string[] goodExts = {".pdf" };
+
+                //check the ext variable ToLower() against our list of good exts and verify the content length
+                //if good
+                if (ext.ToLower() == ".pdf" && (resume.ContentLength <= 4194304))//4mb max by asp.net
+                {
+                    //rename the file using a guid
+                    imgName = Guid.NewGuid() + ext.ToLower();
+
+                    #region Save UnResized value to the webserver
+                    //save the NEW file to the webserver
+                    resume.SaveAs(Server.MapPath("~/Content/images/Resumes/" + imgName));
+                    #endregion
+
+
+                    if (model.ResumeFilename != null)
+                    {
+                        string path = Server.MapPath("~/Content/imgstore/resumes/");
+                        System.IO.File.Delete(path + model.ResumeFilename);
+                    }
+
+                }
+                //save it to the object ONLY if all other conditions have been met
+                userDetail.ResumeFilename = imgName;
+
+
+
                 db.Entry(userDetail).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
